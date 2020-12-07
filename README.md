@@ -13,5 +13,12 @@ Lembrando: a ferramenta encontra-se em fase BETA. Adicionaremos mais ferramentas
  
  python3 LVC1F3r.py
            
- ![alt text](https://i.imgur.com/qPPCJrT.png)
- ![alt text](https://i.imgur.com/ZqlaQii.png)
+ ![alt text](https://i.imgur.com/QtQJkrs.png)
+ ![alt text](https://i.imgur.com/8RaaDvt.png)
+ ![alt text](https://i.imgur.com/OZln61f.png)
+ ![alt text](https://i.imgur.com/tpDIkUG.png)
+ 
+ ![alt text](https://i.imgur.com/gSWYgkf.png)
+ ![alt text](https://i.imgur.com/3uOjvGC.png)
+ ![alt text](https://i.imgur.com/kQxqQOo.png)
+ ![alt text](https://i.imgur.com/IJIJWh4.png)
