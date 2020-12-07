@@ -1,3 +1,5 @@
+# encoding: utf-8
+#!/usr/bin/python
 import socket
 import os
 import sys
@@ -80,7 +82,7 @@ $R@i.~~ !     :   ~$$$$$B$$en:``
   sleep(1)
   print(tBranco +"                                                                     λ ► https://github.com/Gl4sya")
   sleep(1)
-  print(tBranco +"                                                                     λ ► https://github.com/Slayyer-dev")                                                   
+  print(tBranco + "                                                                     λ ► https://github.com/Slayyer-dev")
 colors = [Fore.RED, Fore.BLUE, Fore.WHITE, Fore.GREEN, Fore.CYAN, Fore.YELLOW]
 os.system(['clear', 'cls'][os.name == 'nt'])
 def logo_printer():
@@ -112,16 +114,107 @@ def logo_printer():
         _logo_enumer +=1
         sleep(0.005)
 def whois():
-  print(tAmarelo + """               
-   |_  _  o  _ 
-\^/| |(_) | _> 
+  #imports
+  try: 
+    import socket
+    import os
+    import argparse
+    from time import sleep
+  except:
+    print("[!]Dependencies not installed")
+  #end
+
+  #colors
+  RED            = "\033[1;31m"
+  LIGHT_RED      = "\033[1;91m"
+  MAGENTA        = "\033[1;35m"
+  BLUE           = "\033[1;94m"
+  RESET          = "\033[0;0m"
+  GREEN          = "\033[1;32m"
+  #end
+
+  os.system(['clear', 'cls'][os.name == 'nt'])
+  #logo
+  print(MAGENTA + """
+                                                                
+     ,---,                                                   ,--,    
+    '  .' \                                                ,--.'|    
+   /  ;    '.           ,----,  __  ,-.                    |  | :    
+  :  :       \        .'   .`|,' ,'/ /|                    :  : '    
+  :  |   /\   \    .'   .'  .''  | |' | ,--.--.     ,---.  |  ' |    
+  |  :  ' ;.   : ,---, '   ./ |  |   ,'/       \   /     \ '  | |    
+  |  |  ;/  \   \;   | .'  /  '  :  / .--.  .-. | /    /  ||  | :    
+  '  :  | \  \ ,'`---' /  ;--,|  | '   \__\/: . ..    ' / |'  : |__  
+  |  |  '  '--'    /  /  / .`|;  : |   ," .--.; |'   ;   /||  | '.'| 
+  |  :  :        ./__;     .' |  , ;  /  /  ,.  |'   |  / |;  :    ; 
+  |  | ,'        ;   |  .'     ---'  ;  :   .'   \   :    ||  ,   /  
+  `--''          `---'               |  ,     .-./\   \  /  ---`-'   
+                                      `--`---'     `----'            
+                                                                     
+
   """)
-  sleep(1)
-  ip = input(tBranco + """ Digite aqui o IP/Domínio (sem http/https) de quem você deseja
-  ► """)
-  sleep(1)
-  os.system(f'whois {ip}')
-  print(" ")
+  print(RED + """
+  [+]Join in our Discord!
+  [!]https://discord.gg/v5d3PZ9 
+  """)
+  print(BLUE + """
+  [+]Subscribe in my channel!
+  [!]https://www.youtube.com/channel/UCret_G0WHRBQYG5MesldNjw
+  """)
+  print(GREEN + """
+  [+]Follow me in Github!
+  [!]https://github.com/slayyer-dev
+  """)
+  print(LIGHT_RED + "Fé pros reais: \nhttps://github.com/Gl4sya\nhttps://github.com/march0s1as\nhttps://github.com/zy0x157" + RESET)
+  #end
+
+  host = input("Host λ ►  ").strip()
+  try:
+    try:
+      socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+      socket.connect(("whois.arin.net", 43))
+      socket.send((host + "\r\n").encode())
+      
+      response = b""
+      while True:
+        data = socket.recv(4096)
+        response += data
+        if not data:
+          break
+      socket.close()
+      sleep(2)
+      os.system(['clear', 'cls'][os.name == 'nt'])
+      print(response.decode())
+      print("="*100)
+
+    except:
+      os.system(['clear', 'cls'][os.name == 'nt'])
+      print(RED + "[!]Connection Failed" + RESET)
+  except KeyboardInterrupt:
+    os.system(['clear', 'cls'][os.name == 'nt'])
+    print(RED + "[!]The progam has been aborted!")
+
+  sleep(2)
+  print(RED + """                      
+            |\    _,--------._    / |
+            | `.,'            `. /  |
+            `  '              ,-'   '     Thanks for use this script!
+             \/_         _   (     /      See you later! hehehe
+            (,-.`.    ,',-.`. `__,'
+             |/#\ ),-','#\`= ,'.` |
+             `._/)  -'.\_,'   ) ))|
+             /  (_.)\     .   -'//
+            (  /\____/\    ) )`'\/
+             \ |V----V||  ' ,    \/
+              |`- -- -'   ,'   \  \      _____
+       ___    |         .'    \ \  `._,-'     `-
+          `.__,`---^---'       \ ` -'
+             -.______  \ . /  ______,-
+                     `.     ,'            
+
+    """ + RESET)
+  print("="*100)
+
   voltar = input(tCiano + """Deseja voltar ao menu principal? (sim/nao)
   ► """)
   if voltar == "sim":
@@ -494,7 +587,26 @@ def menu_principal():
     os.system(['clear', 'cls'][os.name == 'nt'])
     sleep(1)
     print(fVermelho + """
-Número errado, irmão.
+                          :::!~!!!!!:.
+                  .xUHWH!! !!?M88WHX:.
+                .X*#M@$!!  !X!M$$$$$$WWx:.
+               :!!!!!!?H! :!$!$$$$$$$$$$8X:
+              !!~  ~:~!! :~!$!#$$$$$$$$$$8X:
+             :!~::!H!<   ~.U$X!?R$$$$$$$$MM!    Número errado, irmão.
+             ~!~!!!!~~ .:XW$$$U!!?$$$$$$RMM!
+               !:~~~ .:!M"T#$$$$WX??#MRRMMM!
+               ~?WuxiW*`   `"#$$$$8!!!!??!!!
+             :X- M$$$$       `"T#$T~!8$WUXU~
+            :%`  ~#$$$m:        ~!~ ?$$$$$$
+          :!`.-   ~T$$$$8xx.  .xWW- ~""##*"
+.....   -~~:<` !    ~?T#$$@@W@*?$$      /`
+W$@@M!!! .!~~ !!     .:XUW$W!~ `"~:    :
+#"~~`.:x%`!!  !H:   !WM$$$$Ti.: .!WUn+!`
+:::~:!!`:X~ .: ?H.!u "$$$B$$$!W:U!T$$M~
+.~~   :X@!.-~   ?@WTWo("*$$$W$TH$! `
+Wi.~!X$?!-~    : ?$$$B$Wu("**$RM!
+$R@i.~~ !     :   ~$$$$$B$$en:``
+?MXT@Wx.~    :     ~"##*$$$$M~
 """)
   exit()
 aviso()
@@ -503,4 +615,5 @@ os.system(['clear', 'cls'][os.name == 'nt'])
 logo_printer()
 sleep(1)
 menu_principal()
+
 
