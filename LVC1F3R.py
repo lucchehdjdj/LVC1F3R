@@ -587,26 +587,7 @@ def menu_principal():
     os.system(['clear', 'cls'][os.name == 'nt'])
     sleep(1)
     print(fVermelho + """
-                          :::!~!!!!!:.
-                  .xUHWH!! !!?M88WHX:.
-                .X*#M@$!!  !X!M$$$$$$WWx:.
-               :!!!!!!?H! :!$!$$$$$$$$$$8X:
-              !!~  ~:~!! :~!$!#$$$$$$$$$$8X:
-             :!~::!H!<   ~.U$X!?R$$$$$$$$MM!    Número errado, irmão.
-             ~!~!!!!~~ .:XW$$$U!!?$$$$$$RMM!
-               !:~~~ .:!M"T#$$$$WX??#MRRMMM!
-               ~?WuxiW*`   `"#$$$$8!!!!??!!!
-             :X- M$$$$       `"T#$T~!8$WUXU~
-            :%`  ~#$$$m:        ~!~ ?$$$$$$
-          :!`.-   ~T$$$$8xx.  .xWW- ~""##*"
-.....   -~~:<` !    ~?T#$$@@W@*?$$      /`
-W$@@M!!! .!~~ !!     .:XUW$W!~ `"~:    :
-#"~~`.:x%`!!  !H:   !WM$$$$Ti.: .!WUn+!`
-:::~:!!`:X~ .: ?H.!u "$$$B$$$!W:U!T$$M~
-.~~   :X@!.-~   ?@WTWo("*$$$W$TH$! `
-Wi.~!X$?!-~    : ?$$$B$Wu("**$RM!
-$R@i.~~ !     :   ~$$$$$B$$en:``
-?MXT@Wx.~    :     ~"##*$$$$M~
+Número errado, brother.
 """)
   exit()
 aviso()
