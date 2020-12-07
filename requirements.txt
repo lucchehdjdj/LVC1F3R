@@ -1,0 +1,8 @@
+sockets
+colorama
+choice
+requests
+argparse
+crayons
+faker
+hashlib
