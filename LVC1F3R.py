@@ -21,7 +21,6 @@ from requests import get
 import urllib.request
 import json
 from passlib.hash import bcrypt
-from libs import pingo
 # fim dos imports.
 #cores.
 red = "\033[91;1m"
@@ -333,7 +332,6 @@ def FVCK_H4SH():
     lenght = len(palavras)
     palavra_certa = ""
     for (index,palavra) in enumerate(palavras):
-      pingo(index, lenght, suffix='completo! :)')
       correto = bcrypt.verify(palavra, hash_bcrypt)
       if (correto):
         palavra_certa = palavra
