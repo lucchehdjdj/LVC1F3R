@@ -1,5 +1,5 @@
 # encoding: utf-8
-#!/usr/bin/python
+#!/usr/bin/python3
 import socket
 import os
 import sys
@@ -437,8 +437,8 @@ def PorkScan():
   #Logo        
   colors = [Fore.RED, Fore.BLUE, Fore.WHITE, Fore.GREEN, Fore.CYAN, Fore.YELLOW]
 
-  def logo_printer():
-      logo = r""" 
+  def logo_printer2():
+      logo = r"""
   ▄▀▀▀█▀▀▄  ▄▀▀▄ ▄▄   ▄▀▀█▄▄▄▄      ▄▀▀▀▀▄    ▄▀▀▀▀▄   ▄▀▀█▄▄   ▄▀▀▀▀▄ 
   █    █  ▐ █  █   ▄▀ ▐  ▄▀   ▐     █         █      █ █ ▄▀   █ █ █   ▐ 
   ▐   █     ▐  █▄▄▄█    █▄▄▄▄▄      █    ▀▄▄  █      █ ▐ █    █    ▀▄   
@@ -457,7 +457,19 @@ def PorkScan():
           _logo_enumer +=1
           sleep(0.005)
 
+  logo_printer2()
+  sleep(2)
+  voltar = input(tCiano + """Deseja voltar ao menu principal? (sim/nao)
+  ► """)
+  if voltar == "sim":
+    sleep(1)
+    os.system(['clear', 'cls'][os.name == 'nt'])
+    logo_printer()
+    menu_principal()
+  else:
+    exit()
   logo_printer()
+  menu_principal()
 
   #Github
   print(tAzul + "Gl4sya's Github: https://github.com/Gl4sya/")
@@ -596,5 +608,3 @@ os.system(['clear', 'cls'][os.name == 'nt'])
 logo_printer()
 sleep(1)
 menu_principal()
-
-
