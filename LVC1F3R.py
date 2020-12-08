@@ -20,6 +20,8 @@ import time
 from requests import get
 import urllib.request
 import json
+from passlib.hash import bcrypt
+from libs import pingo
 # fim dos imports.
 #cores.
 red = "\033[91;1m"
@@ -51,7 +53,19 @@ tNegrito = "\033[;1m"
 tInverte = "\033[;7m"
 tReset = "\033[0;0m"
 # fim das cores.
+def notificaçoes():
+  print(tAmarelo + """   .                       
+  (                              Notas de atualização:
+    \\                        
+     )       Adicionamos o módulo "crack bcrypt" no menu "FVCK_H4SH".
+##-------->  Por favor, baixem a wordlist que disponibilizamos como "senhas.txt"    
+     )       e dêem um upgrade no "requirements.txt".
+    /        
+   (   """)
 def aviso():
+  notificaçoes()
+  sleep(6)
+  os.system(['clear', 'cls'][os.name == 'nt'])
   print(tBranco + "salve para slayyer e zoldyc! os de verdade akakak!")
   sleep(1)
   os.system(['clear', 'cls'][os.name == 'nt'])
@@ -308,66 +322,99 @@ def FVCK_H4SH():
                   `.`.<
                     `-'
   """)
-  hash_md5 = input(tAmareloClaro + """Digite sua MD5
-  ►  """)
-  print(" ")
-  sleep(1)
-  wordlist_md5 = input(tCiano + """Digite a localização de sua wordlist
+  escolher_hash = input(tBranco + """Qual hash você deseja quebrar? (md5/bcrypt)
   ► """)
-  sleep(2)
-  os.system(['clear', 'cls'][os.name == 'nt'])
-  print(tBranco + """   
-                                    ___
-                               ,-""   `.
-                             ,'  _   e )`-._
-                            /  ,' `-._<.===-'
-                           /  /
-                          /  ;         hash cracker by:
-              _.--.__    /   ;            march0s1as.
- (`._    _.-""       "--'    |
- <_  `-""                     \\
-  <`-                          :
-   (__   <__.                  ;
-     `-.   '-.__.      _.'    /
-        \      `-.__,-'    _,'
-         `._    ,    /__,-'
-            ""._\__,'< <____
-                 | |  `----.`.
-                 | |        \ `.
-                 ; |___      \-``
-                 \   --<
-                  `.`.<
-                    `-'
-  """)
+  print(" ")
+  if escolher_hash == "bcrypt":
+    texto_senhas = open("senhas.txt", "r")
+    palavras = texto_senhas.read().splitlines()
+    hash_bcrypt = input(tAmarelo + """Digite aqui sua bCRYPT:
+    ► """)
+    lenght = len(palavras)
+    palavra_certa = ""
+    for (index,palavra) in enumerate(palavras):
+      pingo(index, lenght, suffix='completo! :)')
+      correto = bcrypt.verify(palavra, hash_bcrypt)
+      if (correto):
+        palavra_certa = palavra
+        print()
+        break
+    print(" ")  
+    print(tVerde + """A senha descriptografada é:
+    λ ► """, palavra_certa)
+    sleep(2)
+    print(" ")
+    voltar = input(tCiano + """Deseja voltar ao menu principal? (sim/nao)
+  ► """)
+    if voltar == "sim":
+      sleep(1)
+      os.system(['clear', 'cls'][os.name == 'nt'])
+      logo_printer()
+      menu_principal()
+    else:
+      exit()
 
-  try:
-      wordlist_md5 = open(wordlist_md5,"r")
-  except:
-      print(fVermelho + "\n puta brother, arquivo não encontrado.")
-      quit()
+  if escolher_hash == "md5":
+    hash_md5 = input(tAmareloClaro + """Digite sua MD5
+    ►  """)
+    print(" ")
+    sleep(1)
+    wordlist_md5 = input(tCiano + """Digite a localização de sua wordlist
+    ► """)
+    sleep(2)
+    os.system(['clear', 'cls'][os.name == 'nt'])
+    print(tBranco + """   
+                                      ___
+                                ,-""   `.
+                              ,'  _   e )`-._
+                              /  ,' `-._<.===-'
+                            /  /
+                            /  ;         hash cracker by:
+                _.--.__    /   ;            march0s1as.
+  (`._    _.-""       "--'    |
+  <_  `-""                     \\
+    <`-                          :
+    (__   <__.                  ;
+      `-.   '-.__.      _.'    /
+          \      `-.__,-'    _,'
+          `._    ,    /__,-'
+              ""._\__,'< <____
+                  | |  `----.`.
+                  | |        \ `.
+                  ; |___      \-``
+                  \   --<
+                    `.`.<
+                      `-'
+    """)
 
-  for senha in wordlist_md5:
-      hash_obj = hashlib.md5(senha.strip().encode('utf-8')).hexdigest()
-      start = time.time()
-      sleep(2)
-      print(" ")
-      print(tBranco + "Tentando a senha %d ( %s )" % (counter,senha.strip()))
-      counter += 1
-      end = time.time()
-      tempo = end - start
+    try:
+        wordlist_md5 = open(wordlist_md5,"r")
+    except:
+        print(fVermelho + "\n puta brother, arquivo não encontrado.")
+        quit()
 
-      if hash_obj == hash_md5:
-          sleep(2)
-          print(tVerde + "\nBoa, meu brother! A senha é ► %s " % senha)
-          sleep(1)
-          print(tVerde + "A bruteforce foi finalizada com êxito em  ► ",tempo,"segundos.")
-          print(" ")
-          sleep(1)
-          print(tBranco + "Voltando para o menu principal..")
-          sleep(5)
-          os.system(['clear', 'cls'][os.name == 'nt'])
-          logo_printer()
-          menu_principal()
+    for senha in wordlist_md5:
+        hash_obj = hashlib.md5(senha.strip().encode('utf-8')).hexdigest()
+        start = time.time()
+        sleep(2)
+        print(" ")
+        print(tBranco + "Tentando a senha %d ( %s )" % (counter,senha.strip()))
+        counter += 1
+        end = time.time()
+        tempo = end - start
+
+        if hash_obj == hash_md5:
+            sleep(2)
+            print(tVerde + "\nBoa, meu brother! A senha é ► %s " % senha)
+            sleep(1)
+            print(tVerde + "A bruteforce foi finalizada com êxito em  ► ",tempo,"segundos.")
+            print(" ")
+            sleep(1)
+            print(tBranco + "Voltando para o menu principal..")
+            sleep(5)
+            os.system(['clear', 'cls'][os.name == 'nt'])
+            logo_printer()
+            menu_principal()
   else:
       print(fVermelho + "\n Senha não encontrada :(")
 
