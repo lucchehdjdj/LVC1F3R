@@ -6,3 +6,6 @@ argparse
 crayons
 faker
 hashlib
+bcrypt
+libs
+pingo
