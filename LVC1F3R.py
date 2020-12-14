@@ -103,6 +103,7 @@ $R@i.~~ !     :   ~$$$$$B$$en:``
   print(tBranco +"                                                                     λ ► https://github.com/Gl4sya")
   sleep(1)
   print(tBranco + "                                                                     λ ► https://github.com/Slayyer-dev")
+  print(tBranco + "                                                                     λ ► htps://github.com/wirecalvo")
 colors = [Fore.RED, Fore.BLUE, Fore.WHITE, Fore.GREEN, Fore.CYAN, Fore.YELLOW]
 os.system(['clear', 'cls'][os.name == 'nt'])
 def logo_printer():
