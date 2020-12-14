@@ -149,7 +149,7 @@ def SubBrute():
   dom = input("""\033[35mDomínio alvo (sem o http/https)
   λ ► """)
   time.sleep(0.4)
-  wl = input(white + """Wordlist (digite "lista.txt" para a padrão (recomendada).
+  wl = input(white + """Wordlist (digite "lista.txt" para a wordlist recomendada).
   λ ► """)
   file = open(wl, "r")
   dns = file.read()
